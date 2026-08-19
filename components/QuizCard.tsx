@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CheckCircle2, XCircle, HelpCircle, BookOpen, ChevronRight, Award, RefreshCw, Sparkles } from 'lucide-react';
+import { CheckCircle2, XCircle, HelpCircle, BookOpen, ChevronRight, Award, RefreshCw, Sparkles, ExternalLink, Shuffle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { QuizQuestion } from '@/lib/quizData';
 
@@ -10,14 +10,33 @@ interface QuizCardProps {
   onFinish?: (score: number, total: number) => void;
 }
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
+  const [shuffled, setShuffled] = useState<QuizQuestion[]>(() => shuffleArray(questions));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
 
-  const currentQ = questions[currentIndex];
+  const currentQ = shuffled[currentIndex];
+
+  const handleShuffle = () => {
+    setShuffled(shuffleArray(questions));
+    setCurrentIndex(0);
+    setSelectedOption(null);
+    setIsAnswered(false);
+    setScore(0);
+    setIsFinished(false);
+  };
 
   const handleSelectOption = (index: number) => {
     if (isAnswered) return;
@@ -30,7 +49,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
   };
 
   const handleNextQuestion = () => {
-    if (currentIndex + 1 < questions.length) {
+    if (currentIndex + 1 < shuffled.length) {
       setCurrentIndex((prev) => prev + 1);
       setSelectedOption(null);
       setIsAnswered(false);
@@ -38,28 +57,24 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
       setIsFinished(true);
       if (typeof window !== 'undefined') {
         confetti({
-          particleCount: 100,
+          particleCount: 120,
           spread: 70,
           origin: { y: 0.6 }
         });
       }
       if (onFinish) {
-        onFinish(score + (selectedOption === currentQ.correctIndex ? 1 : 0), questions.length);
+        onFinish(score + (selectedOption === currentQ.correctIndex ? 1 : 0), shuffled.length);
       }
     }
   };
 
   const handleRestart = () => {
-    setCurrentIndex(0);
-    setSelectedOption(null);
-    setIsAnswered(false);
-    setScore(0);
-    setIsFinished(false);
+    handleShuffle();
   };
 
   if (!currentQ || isFinished) {
     const finalScore = score;
-    const percentage = Math.round((finalScore / questions.length) * 100);
+    const percentage = Math.round((finalScore / shuffled.length) * 100);
 
     return (
       <div className="bg-white p-8 rounded-3xl text-center space-y-6 max-w-xl mx-auto border-2 border-amber-300 shadow-2xl shadow-amber-500/10">
@@ -69,13 +84,13 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
         <div className="space-y-2">
           <h2 className="text-2xl font-bold text-slate-800">การทดสอบเสร็จสมบูรณ์!</h2>
           <p className="text-slate-600 text-sm">
-            คุณทบทวนข้อสอบนักธรรมสำเร็จแล้ว ({questions.length} ข้อ)
+            คุณทบทวนข้อสอบนักธรรมสำเร็จแล้ว ({shuffled.length} ข้อ)
           </p>
         </div>
 
         <div className="bg-amber-50/80 p-6 rounded-2xl border border-amber-200 space-y-3">
           <div className="text-4xl font-extrabold text-amber-600">
-            {finalScore} / {questions.length}
+            {finalScore} / {shuffled.length}
           </div>
           <p className="text-xs text-amber-800 font-bold">
             คะแนนความถูกต้อง: {percentage}%
@@ -96,13 +111,20 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
             : 'พยายามอีกนิด! หมั่นทบทวนเนื้อหาในวิดีโอติวและอ่านธรรมะวิภาคเพิ่มเติม'}
         </p>
 
-        <div className="flex justify-center space-x-4 pt-2">
+        <div className="flex justify-center space-x-3 pt-2">
           <button
             onClick={handleRestart}
             className="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-400 hover:from-amber-600 hover:to-orange-500 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md shadow-amber-500/20 active:scale-95 text-sm"
           >
             <RefreshCw className="w-4 h-4" />
             <span>ทำข้อสอบใหม่อีกครั้ง</span>
+          </button>
+          <button
+            onClick={handleShuffle}
+            className="flex items-center space-x-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-3 rounded-xl transition-all text-sm border border-slate-200"
+          >
+            <Shuffle className="w-4 h-4" />
+            <span>สุ่มชุดใหม่</span>
           </button>
         </div>
       </div>
@@ -124,8 +146,16 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
         </div>
         <div className="text-xs text-amber-600 font-bold flex items-center space-x-1">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>ข้อ {currentIndex + 1} จาก {questions.length}</span>
+          <span>ข้อ {currentIndex + 1} จาก {shuffled.length}</span>
         </div>
+      </div>
+
+      {/* Progress bar */}
+      <div className="w-full bg-amber-100 h-1.5 rounded-full overflow-hidden -mt-4">
+        <div
+          className="bg-gradient-to-r from-amber-500 to-orange-400 h-full transition-all duration-300 rounded-full"
+          style={{ width: `${((currentIndex) / shuffled.length) * 100}%` }}
+        />
       </div>
 
       {/* Question */}
@@ -191,10 +221,27 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
               </span>
             </div>
             <p className="text-slate-700 mt-2 font-normal leading-relaxed">{currentQ.explanation}</p>
+            
+            {/* Reference */}
             <div className="mt-3 pt-2 border-t border-emerald-200/60 text-[11px] text-amber-700 font-bold flex items-center space-x-1">
-              <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+              <BookOpen className="w-3.5 h-3.5 text-amber-600 shrink-0" />
               <span>อ้างอิงคัมภีร์: {currentQ.reference}</span>
             </div>
+
+            {/* Source Badge */}
+            {currentQ.sourceName && currentQ.sourceUrl && (
+              <div className="mt-2 flex items-center space-x-1">
+                <a
+                  href={currentQ.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1 bg-amber-100 hover:bg-amber-200 border border-amber-300 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full transition-all"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  <span>ที่มา: {currentQ.sourceName}</span>
+                </a>
+              </div>
+            )}
           </div>
 
           <div className="flex justify-end pt-2">
@@ -202,7 +249,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
               onClick={handleNextQuestion}
               className="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-400 hover:from-amber-600 hover:to-orange-500 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md shadow-amber-500/20 active:scale-95 text-sm"
             >
-              <span>{currentIndex + 1 < questions.length ? 'ข้อถัดไป' : 'ดูสรุปผลคะแนน'}</span>
+              <span>{currentIndex + 1 < shuffled.length ? 'ข้อถัดไป' : 'ดูสรุปผลคะแนน'}</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>

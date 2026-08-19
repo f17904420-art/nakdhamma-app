@@ -2,10 +2,19 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Award, BookOpen, Filter } from 'lucide-react';
+import { Award, BookOpen, Filter, Shuffle } from 'lucide-react';
 import { QUIZ_QUESTIONS, QuizQuestion } from '@/lib/quizData';
 import { QuizCard } from '@/components/QuizCard';
 import { getStoredProfile, setStoredProfile } from '@/lib/supabase';
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 function QuizPageContent() {
   const searchParams = useSearchParams();
@@ -14,22 +23,21 @@ function QuizPageContent() {
   const [activeGrade, setActiveGrade] = useState<'ทั้งหมด' | 'ตรี' | 'โท' | 'เอก'>(
     initialGradeParam || 'ทั้งหมด'
   );
-  const [activeSubject, setActiveSubject] = useState<'ทั้งหมด' | 'ธรรมะ' | 'พุทธประวัติ' | 'วินัย' | 'เทศนา/กรรมฐาน'>('ทั้งหมด');
+  const [activeSubject, setActiveSubject] = useState<'ทั้งหมด' | 'ธรรมะ' | 'พุทธประวัติ' | 'วินัย' | 'กระทู้ธรรม'>('ทั้งหมด');
   const [filteredQuestions, setFilteredQuestions] = useState<QuizQuestion[]>([]);
   const [quizKey, setQuizKey] = useState(0);
 
-  useEffect(() => {
+  const applyFiltersAndShuffle = (grade: typeof activeGrade, subject: typeof activeSubject) => {
     let result = QUIZ_QUESTIONS;
-
-    if (activeGrade !== 'ทั้งหมด') {
-      result = result.filter((q) => q.grade === activeGrade);
-    }
-    if (activeSubject !== 'ทั้งหมด') {
-      result = result.filter((q) => q.subject === activeSubject);
-    }
-
-    setFilteredQuestions(result);
+    if (grade !== 'ทั้งหมด') result = result.filter((q) => q.grade === grade);
+    if (subject !== 'ทั้งหมด') result = result.filter((q) => q.subject === subject);
+    setFilteredQuestions(shuffleArray(result));
     setQuizKey((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    applyFiltersAndShuffle(activeGrade, activeSubject);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeGrade, activeSubject]);
 
   const handleQuizFinish = (earnedScore: number, total: number) => {
@@ -45,6 +53,15 @@ function QuizPageContent() {
     }
   };
 
+  const subjectList = (['ทั้งหมด', 'ธรรมะ', 'พุทธประวัติ', 'วินัย', 'กระทู้ธรรม'] as const);
+
+  const countFor = (grade: typeof activeGrade, sub: typeof activeSubject) => {
+    let r = QUIZ_QUESTIONS;
+    if (grade !== 'ทั้งหมด') r = r.filter((q) => q.grade === grade);
+    if (sub !== 'ทั้งหมด') r = r.filter((q) => q.subject === sub);
+    return r.length;
+  };
+
   return (
     <div className="space-y-8 max-w-4xl mx-auto py-4">
       
@@ -58,7 +75,7 @@ function QuizPageContent() {
           สนามสอบจำลองนักธรรมออนไลน์
         </h1>
         <p className="text-xs sm:text-sm text-slate-600">
-          ฝึกทำข้อสอบเลือกตอบจากข้อสอบจริงสนามหลวง ทราบผลทันทีพร้อมคำเฉลยอ้างอิงคัมภีร์
+          ฝึกทำข้อสอบเลือกตอบจากข้อสอบจริงสนามหลวง ทราบผลทันทีพร้อมคำเฉลยอ้างอิงคัมภีร์ · <span className="text-amber-700 font-bold">สุ่มข้อสอบทุกครั้งที่เริ่มใหม่</span>
         </p>
       </div>
 
@@ -92,21 +109,38 @@ function QuizPageContent() {
         {/* Subject Filter Buttons */}
         <div className="flex items-center justify-between flex-wrap gap-2 pt-3 border-t border-slate-100">
           <span className="text-xs text-slate-500 font-bold">หมวดวิชา:</span>
-          <div className="flex items-center space-x-1.5 flex-wrap">
-            {(['ทั้งหมด', 'ธรรมะ', 'พุทธประวัติ', 'วินัย', 'เทศนา/กรรมฐาน'] as const).map((sub) => (
-              <button
-                key={sub}
-                onClick={() => setActiveSubject(sub)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
-                  activeSubject === sub
-                    ? 'bg-amber-100 text-amber-900 border border-amber-300 font-bold'
-                    : 'text-slate-500 hover:text-amber-700'
-                }`}
-              >
-                {sub}
-              </button>
-            ))}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {subjectList.map((sub) => {
+              const cnt = countFor(activeGrade, sub);
+              return (
+                <button
+                  key={sub}
+                  onClick={() => setActiveSubject(sub)}
+                  className={`px-3 py-1 rounded-lg text-xs font-medium transition-all flex items-center space-x-1 ${
+                    activeSubject === sub
+                      ? 'bg-amber-100 text-amber-900 border border-amber-300 font-bold'
+                      : 'text-slate-500 hover:text-amber-700'
+                  }`}
+                >
+                  <span>{sub}</span>
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                    activeSubject === sub ? 'bg-amber-500 text-white' : 'bg-slate-200 text-slate-600'
+                  }`}>{cnt}</span>
+                </button>
+              );
+            })}
           </div>
+        </div>
+
+        {/* Shuffle Button */}
+        <div className="flex justify-end pt-1 border-t border-slate-100">
+          <button
+            onClick={() => applyFiltersAndShuffle(activeGrade, activeSubject)}
+            className="flex items-center space-x-1.5 bg-gradient-to-r from-amber-100 to-orange-100 hover:from-amber-200 hover:to-orange-200 border border-amber-300 text-amber-900 font-bold px-4 py-1.5 rounded-xl transition-all text-xs"
+          >
+            <Shuffle className="w-3.5 h-3.5 text-amber-600" />
+            <span>สุ่มข้อสอบใหม่</span>
+          </button>
         </div>
 
       </div>
