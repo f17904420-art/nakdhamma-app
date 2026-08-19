@@ -27,10 +27,16 @@ function QuizPageContent() {
   const [filteredQuestions, setFilteredQuestions] = useState<QuizQuestion[]>([]);
   const [quizKey, setQuizKey] = useState(0);
 
+  const isSubjectMatch = (qSub: string, filterSub: typeof activeSubject) => {
+    if (filterSub === 'ทั้งหมด') return true;
+    if (filterSub === 'ธรรมะ') return qSub === 'ธรรมะ' || qSub === 'ธรรมวิภาค' || qSub === 'ธรรมวิจารณ์';
+    return qSub === filterSub;
+  };
+
   const applyFiltersAndShuffle = (grade: typeof activeGrade, subject: typeof activeSubject) => {
     let result = QUIZ_QUESTIONS;
     if (grade !== 'ทั้งหมด') result = result.filter((q) => q.grade === grade);
-    if (subject !== 'ทั้งหมด') result = result.filter((q) => q.subject === subject);
+    if (subject !== 'ทั้งหมด') result = result.filter((q) => isSubjectMatch(q.subject, subject));
     setFilteredQuestions(shuffleArray(result));
     setQuizKey((prev) => prev + 1);
   };
@@ -58,7 +64,7 @@ function QuizPageContent() {
   const countFor = (grade: typeof activeGrade, sub: typeof activeSubject) => {
     let r = QUIZ_QUESTIONS;
     if (grade !== 'ทั้งหมด') r = r.filter((q) => q.grade === grade);
-    if (sub !== 'ทั้งหมด') r = r.filter((q) => q.subject === sub);
+    if (sub !== 'ทั้งหมด') r = r.filter((q) => isSubjectMatch(q.subject, sub));
     return r.length;
   };
 
