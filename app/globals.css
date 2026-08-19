@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Kanit', 'Sarabun', sans-serif;
+    --bg-main: #FFFDF7;
+    --card-bg: #FFFFFF;
+    --primary-orange: #F59E0B;
+    --primary-gold: #D97706;
+    --accent-mint: #10B981;
+    --accent-sky: #0EA5E9;
+    --accent-rose: #F43F5E;
+  }
+}
+
+body {
+  background-color: #FFFDF7;
+  color: #1E293B;
+  font-family: 'Kanit', 'Sarabun', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FEF3C7;
+}
+::-webkit-scrollbar-thumb {
+  background: #F59E0B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D97706;
+}
+
+/* Modern Bright Glass & Card Utilities */
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+.bright-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.08);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bright-card:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -4px rgba(245, 158, 11, 0.16);
+}
+
+/* Bright text gradients */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #D97706 0%, #B45309 50%, #92400E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-hero-gradient {
+  background: linear-gradient(135deg, #EA580C 0%, #D97706 50%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animation utilities */
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s infinite ease-in-out;
+}
