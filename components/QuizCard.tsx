@@ -136,13 +136,18 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
       
       {/* Header Info */}
       <div className="flex items-center justify-between border-b border-amber-100 pb-4">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 flex-wrap gap-y-1">
           <span className="px-3 py-1 bg-amber-500 text-white font-bold rounded-lg text-xs shadow-xs">
             นักธรรมชั้น{currentQ.grade}
           </span>
           <span className="px-3 py-1 bg-amber-100 text-amber-900 font-bold rounded-lg text-xs">
             วิชา{currentQ.subject}
           </span>
+          {currentQ.year && (
+            <span className="px-3 py-1 bg-amber-50 border border-amber-300 text-amber-800 font-bold rounded-lg text-xs">
+              ปีที่ออกสอบ: {currentQ.year}
+            </span>
+          )}
         </div>
         <div className="text-xs text-amber-600 font-bold flex items-center space-x-1">
           <Sparkles className="w-3.5 h-3.5" />
@@ -236,9 +241,10 @@ export const QuizCard: React.FC<QuizCardProps> = ({ questions, onFinish }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-1 bg-amber-100 hover:bg-amber-200 border border-amber-300 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full transition-all"
+                  title="เปิดดูไฟล์เอกสารอ้างอิงตรง"
                 >
-                  <ExternalLink className="w-3 h-3" />
-                  <span>ที่มา: {currentQ.sourceName}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>เปิดอ่านเอกสาร: {currentQ.sourceName}</span>
                 </a>
               </div>
             )}
