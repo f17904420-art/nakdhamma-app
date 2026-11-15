@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Award, Video, Scroll, User, Flame, Sparkles } from 'lucide-react';
+import { BookOpen, Award, Video, Scroll, User, Flame, Sparkles, Presentation } from 'lucide-react';
 import { getStoredProfile, UserProfile } from '@/lib/supabase';
 
 export const Header: React.FC = () => {
@@ -28,10 +28,11 @@ export const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { href: '/', label: 'หน้าหลัก', icon: BookOpen, color: 'text-amber-500' },
-    { href: '/quiz', label: 'เกมข้อสอบนักธรรม', icon: Award, color: 'text-emerald-500' },
-    { href: '/youtube-tutoring', label: 'ติวเก็ง YouTube', icon: Video, color: 'text-sky-500' },
-    { href: '/sermon-guide', label: 'โครงสร้างการเทศน์', icon: Scroll, color: 'text-rose-500' },
+    { href: '/', label: 'หน้าหลัก', mobileLabel: 'หน้าหลัก', icon: BookOpen, color: 'text-amber-500' },
+    { href: '/quiz', label: 'เกมข้อสอบนักธรรม', mobileLabel: 'ข้อสอบ', icon: Award, color: 'text-emerald-500' },
+    { href: '/youtube-tutoring', label: 'ติวเก็ง YouTube', mobileLabel: 'คลิปติว', icon: Video, color: 'text-sky-500' },
+    { href: '/media', label: 'สื่อการสอน', mobileLabel: 'สื่อการสอน', icon: Presentation, color: 'text-indigo-500' },
+    { href: '/sermon-guide', label: 'โครงสร้างการเทศน์', mobileLabel: 'คู่มือเทศน์', icon: Scroll, color: 'text-rose-500' },
   ];
 
   return (
@@ -115,7 +116,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Mobile Navigation Row */}
-        <div className="flex md:hidden items-center justify-around py-2 border-t border-amber-100">
+        <div className="flex md:hidden items-center justify-around py-2 border-t border-amber-100/80">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = pathname === link.href;
@@ -123,12 +124,12 @@ export const Header: React.FC = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex flex-col items-center px-2 py-1 rounded-lg text-[11px] font-bold transition-all ${
-                  isActive ? 'text-amber-600 bg-amber-50' : 'text-slate-500'
+                className={`flex flex-col items-center justify-center flex-1 py-1 rounded-xl text-[11px] font-bold transition-all ${
+                  isActive ? 'text-amber-600 bg-amber-50/80 font-extrabold shadow-2xs' : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
-                <Icon className="w-4 h-4 mb-0.5" />
-                <span>{link.label}</span>
+                <Icon className={`w-4 h-4 mb-0.5 ${isActive ? 'text-amber-600 scale-110' : link.color}`} />
+                <span className="truncate max-w-[65px]">{link.mobileLabel}</span>
               </Link>
             );
           })}

@@ -38,6 +38,7 @@ export const Footer: React.FC = () => {
             <Link href="/" className="hover:text-amber-600 transition-colors font-medium">หน้าแรก Dashboard</Link>
             <Link href="/quiz" className="hover:text-amber-600 transition-colors font-medium">คลังแบบทดสอบเลือกตอบ</Link>
             <Link href="/youtube-tutoring" className="hover:text-amber-600 transition-colors font-medium">วิดีโอติวเก็งสนามหลวง</Link>
+            <Link href="/media" className="hover:text-amber-600 transition-colors font-medium">สื่อการสอนธรรมะ</Link>
             <Link href="/sermon-guide" className="hover:text-amber-600 transition-colors font-medium">คู่มือโครงสร้างเทศนา 4 ขั้นตอน</Link>
           </div>
 
