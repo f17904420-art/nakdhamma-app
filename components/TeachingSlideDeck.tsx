@@ -313,7 +313,7 @@ export const TeachingSlideDeck: React.FC = () => {
             { id: 'dhamma', label: `ธรรมวิภาค (${NAKDHAMMA_TRI_DECKS.filter((d) => d.subjectId === 'dhamma').length})` },
             { id: 'buddha', label: `พุทธประวัติ (${NAKDHAMMA_TRI_DECKS.filter((d) => d.subjectId === 'buddha').length})` },
             { id: 'ceremony', label: `ศาสนพิธี (${NAKDHAMMA_TRI_DECKS.filter((d) => d.subjectId === 'ceremony').length})` },
-            { id: 'vinai', label: `วินัยมุข (${NAKDHAMMA_TRI_DECKS.filter((d) => d.subjectId === 'vinai').length})` },
+            { id: 'vinai', label: `เบญจศีล / วินัย (${NAKDHAMMA_TRI_DECKS.filter((d) => d.subjectId === 'vinai').length})` },
             { id: 'kratu', label: `กระทู้ธรรม (${NAKDHAMMA_TRI_DECKS.filter((d) => d.subjectId === 'kratu').length})` }
           ].map((tab) => (
             <button

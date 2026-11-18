@@ -204,6 +204,14 @@ export const INFOGRAPHICS_LIST: InfographicItem[] = [
     tag: 'คิหิปฏิบัติ',
     summary: 'พ่อแม่ (หน้า) ครู (ขวา) บุตรภรรยา (หลัง) เพื่อน (ซ้าย) คนงาน (ล่าง) พระสงฆ์ (บน)'
   },
+  {
+    id: 'sappurisa-seven',
+    title: 'สัปปุริสธรรม ๗: คุณสมบัติของคนดีตามหลักพุทธศาสนา',
+    category: 'dhamma',
+    categoryLabel: 'ธรรมวิภาค',
+    tag: 'หมวด ๗',
+    summary: 'รู้หลัก (ธัมมัญญุตา), รู้ผล (อัตถัญญุตา), รู้ตน, รู้ประมาณ, รู้กาล, รู้ชุมชน, รู้เลือกบุคคล'
+  },
 
   // พุทธประวัติ
   {
@@ -358,9 +366,17 @@ export const INFOGRAPHICS_LIST: InfographicItem[] = [
     id: 'adhikarana-seven',
     title: 'อธิกรณสมถะ ๗: วิธีระงับอธิกรณ์ข้อพิพาทในสงฆ์',
     category: 'vinai',
-    categoryLabel: 'วินัยมุข',
+    categoryLabel: 'เบญจศีล / วินัย',
     tag: 'อธิกรณสมถะ',
     summary: 'สัมมุขาวินัย สติวินัย อมูฬหวินัย ปฏิญญาตกรณะ เยภุยยสิกา ตัสสปาปิยสิกา ติณวัตถารกวินัย'
+  },
+  {
+    id: 'vinaya-patimokkha-all',
+    title: 'ผังสรุปศีล ๒๒๗ สิกขาบทและลำดับชั้นของอาบัติ',
+    category: 'vinai',
+    categoryLabel: 'เบญจศีล / วินัย',
+    tag: 'ศีล ๒๒๗',
+    summary: 'ปาราชิก ๔, สังฆาทิเสส ๑๓, อนิยต ๒, นิสสัคคิยปาจิตตีย์ ๓๐, ปาจิตตีย์ ๙๒, ปาฏิเทสนียะ ๔, เสขิยวัตร ๗๕, อธิกรณสมถะ ๗'
   },
 
   // กระทู้ธรรม
@@ -395,6 +411,14 @@ export const INFOGRAPHICS_LIST: InfographicItem[] = [
     categoryLabel: 'กระทู้ธรรม',
     tag: 'คลังสุภาษิต',
     summary: 'กมฺมุนา วตฺตตี โลโก, สีลํ โลเก อนุตฺตรํ, อตฺตา หิ อตฺตโน นาโถ'
+  },
+  {
+    id: 'kratu-wisdom',
+    title: 'คลังสุภาษิตเชื่อมยอดฮิต: หมวดปัญญา สัจจะ และความเพียร',
+    category: 'kratu',
+    categoryLabel: 'กระทู้ธรรม',
+    tag: 'คลังสุภาษิต',
+    summary: 'ปญฺญา โลกสฺมิ ปชฺโชโต (ปัญญาเป็นแสงสว่างในโลก), สจฺเจนาถิกิตฺตึ ปปฺโปติ, วายเมเถว ปุริโส'
   },
   {
     id: 'kratu-exam-success',
@@ -451,9 +475,9 @@ export const DhammaInfographicsGallery: React.FC = () => {
           {[
             { id: 'all', label: 'ทั้งหมด' },
             { id: 'dhamma', label: 'ธรรมวิภาค' },
+            { id: 'vinai', label: 'เบญจศีล / วินัย' },
             { id: 'buddha', label: 'พุทธประวัติ' },
             { id: 'ceremony', label: 'ศาสนพิธี' },
-            { id: 'vinai', label: 'วินัยมุข' },
             { id: 'kratu', label: 'กระทู้ธรรม' }
           ].map((tab) => (
             <button

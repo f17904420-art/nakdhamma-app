@@ -38,18 +38,18 @@ export default function MediaPage() {
         <div className="max-w-3xl space-y-3.5 sm:space-y-4 relative z-10">
           <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md border border-white/30 px-3.5 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold text-white shadow-xs">
             <Presentation className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-200 shrink-0" />
-            <span className="truncate">คลังสื่อการสอนและสไลด์บรรยาย • นักธรรมชั้นตรี</span>
+            <span className="truncate">คลังสื่อการสอนและสไลด์บรรยาย • ธรรมศึกษาและนักธรรมชั้นตรี</span>
           </div>
 
           <h1 className="text-2xl sm:text-5xl font-extrabold leading-tight tracking-tight text-white drop-shadow-sm">
             สื่อการสอนและสไลด์ช่วยสอน <br className="hidden sm:inline" />
             <span className="text-amber-100 underline decoration-yellow-300 decoration-wavy underline-offset-6 sm:underline-offset-8">
-              นักธรรมชั้นตรี
+              ธรรมศึกษาและนักธรรมชั้นตรี
             </span>
           </h1>
 
           <p className="text-amber-50 text-xs sm:text-base leading-relaxed font-medium">
-            คัดสรรและจัดทำขึ้นจากหลักสูตรและคัมภีร์มาตรฐานแม่กองธรรมสนามหลวง แบ่งหมวดหมู่ ๔ วิชาหลักอย่างละเอียด พร้อมระบบสไลด์ฉายในชั้นเรียน ผังมโนทัศน์ (Mindmap) บันทึกช่วยสอนสำหรับพระอาจารย์ และเก็งจุดออกสอบ ๑๐๐%
+            อิงตามหลักสูตรธรรมศึกษา ชั้นตรี ฉบับปรับปรุง พุทธศักราช ๒๕๕๗ สำนักงานแม่กองธรรมสนามหลวง และหลักสูตรนักธรรมชั้นตรี ครบถ้วนทั้งธรรมวิภาค, เบญจศีลเบญจธรรม/วินัยมุข, พุทธประวัติ (๕ กาล ๑๓ ปริเฉท), ศาสนพิธี และเรียงความแก้กระทู้ธรรม พร้อมระบบสไลด์ฉายในชั้นเรียน ผังมโนทัศน์ แฟลชการ์ด และไฟล์หนังสือเรียนฉบับทางการ
           </p>
 
           {/* Quick tab shortcuts (Scrollable touch row on mobile) */}
@@ -63,7 +63,7 @@ export default function MediaPage() {
               }`}
             >
               <Presentation className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
-              <span>สไลด์ช่วยสอน (๑๐ บท)</span>
+              <span>สไลด์ช่วยสอน (๑๓ หมวด ๙๙ สไลด์)</span>
             </button>
 
             <button
@@ -75,7 +75,7 @@ export default function MediaPage() {
               }`}
             >
               <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-300 shrink-0" />
-              <span>บัตรคำจำแม่น (Flashcards)</span>
+              <span>บัตรคำจำแม่น (๖๕ ใบ)</span>
             </button>
 
             <button
@@ -87,7 +87,7 @@ export default function MediaPage() {
               }`}
             >
               <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
-              <span>คลังผังมโนทัศน์ (Gallery)</span>
+              <span>คลังผังมโนทัศน์ (๓๑ ผัง)</span>
             </button>
 
             <button
@@ -99,7 +99,7 @@ export default function MediaPage() {
               }`}
             >
               <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
-              <span>สรุปย่อ ๔ หมวดวิชา</span>
+              <span>สรุปย่อ ๕ หมวดวิชา</span>
             </button>
 
             <button
@@ -111,7 +111,7 @@ export default function MediaPage() {
               }`}
             >
               <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
-              <span>เอกสารดาวน์โหลด</span>
+              <span>หนังสือเรียน & ดาวน์โหลด PDF</span>
             </button>
           </div>
         </div>
@@ -145,20 +145,20 @@ export default function MediaPage() {
       )}
 
       {/* ========================================================================= */}
-      {/* SECTION 2: CHEATSHEETS & 4 SUBJECT SUMMARY CARDS */}
+      {/* SECTION 2: CHEATSHEETS & 5 SUBJECT SUMMARY CARDS */}
       {/* ========================================================================= */}
       {activeTab === 'cheatsheets' && (
         <section className="space-y-6">
           <div className="bg-white border border-amber-200/80 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
             <div className="border-b border-amber-100 pb-4">
               <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-100 text-amber-800">
-                สรุปเนื้อหาหลักสูตร
+                สรุปเนื้อหาหลักสูตรปรับปรุง ๒๕๕๗
               </span>
               <h2 className="text-2xl font-bold text-slate-800 mt-1">
-                โครงสร้าง ๔ วิชาหลัก สำหรับสอบนักธรรมชั้นตรี สนามหลวง
+                โครงสร้าง ๕ วิชาหลัก สำหรับสอบธรรมศึกษาและนักธรรมชั้นตรี
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                เจาะลึกแก่นสำคัญของแต่ละวิชา พร้อมเกณฑ์การให้คะแนนและสถิติข้อสอบ
+                เจาะลึกแก่นสำคัญของแต่ละวิชาตามหลักสูตรแม่กองธรรมสนามหลวง พร้อมองค์ประกอบที่มักออกสอบ ๑๐๐%
               </p>
             </div>
 
@@ -174,41 +174,19 @@ export default function MediaPage() {
                     ๑๐๐ คะแนนเต็ม
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๑: ธรรมวิภาค (นวโกวาท)</h3>
+                <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๑: ธรรมวิภาค & คิหิปฏิบัติ</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  รวบรวมหลักธรรมตั้งแต่หมวด ๒ ถึงหมวด ๔ และคิหิปฏิบัติ (จรรยาผู้ครองเรือน) ของสมเด็จพระมหาสมณเจ้า กรมพระยาวชิรญาณวโรรส
+                  หลักธรรมตั้งแต่หมวด ๒ ถึงหมวด ๑๐ และคิหิปฏิบัติ (จรรยาผู้ครองเรือน) ของสมเด็จพระมหาสมณเจ้า กรมพระยาวชิรญาณวโรรส
                 </p>
                 <div className="space-y-1.5 text-xs text-slate-700 pt-2 border-t border-amber-200/60 font-medium">
-                  <div>• <strong>หมวด ๒:</strong> สติ-สัมปชัญญะ, หิริ-โอตตัปปะ, ขันติ-โสรัจจะ, บุพการี-กตัญญูกตเวที</div>
-                  <div>• <strong>หมวด ๓:</strong> พระรัตนตรัย, ไตรสิกขา (ศีล สมาธิ ปัญญา), โอวาทปาติโมกข์ ๓, อกุศลมูล ๓</div>
-                  <div>• <strong>หมวด ๔:</strong> อิทธิบาท ๔, พรหมวิหาร ๔, อริยสัจ ๔, ฆราวาสธรรม ๔, สังคหวัตถุ ๔</div>
-                  <div>• <strong>คิหิปฏิบัติ:</strong> มิตรแท้ ๔, มิตรเทียม ๔, ทิศ ๖, อบายมุข ๔ และ ๖</div>
+                  <div>• <strong>หมวด ๒-๓:</strong> สติ-สัมปชัญญะ, หิริ-โอตตัปปะ, ขันติ-โสรัจจะ, บุพการี-กตัญญูกตเวที, พระรัตนตรัย, ไตรสิกขา, โอวาทปาติโมกข์ ๓, อกุศลมูล ๓</div>
+                  <div>• <strong>หมวด ๔:</strong> อิทธิบาท ๔, พรหมวิหาร ๔, อริยสัจ ๔ (รอบ ๓ อาการ ๑๒), ฆราวาสธรรม ๔, สังคหวัตถุ ๔</div>
+                  <div>• <strong>หมวด ๕-๑๐:</strong> พละ ๕, ขันธ์ ๕, สัปปุริสธรรม ๗, โลกธรรม ๘, อริยมรรค ๘, บารมี ๑๐, กุศลกรรมบถ ๑๐, บุญกิริยาวัตถุ ๑๐</div>
+                  <div>• <strong>คิหิปฏิบัติ:</strong> มิตรแท้ ๔ (๑๖ ลักษณะ), มิตรเทียม ๔, ทิศ ๖, อบายมุข ๖, สมบัติอุบาสก ๕, มิจฉาวณิชชา ๕, หัวใจเศรษฐี (อุ อา กะ สะ)</div>
                 </div>
               </div>
 
-              {/* Card 2: พุทธประวัติ */}
-              <div className="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 hover:border-emerald-400 transition-all space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">
-                    <GraduationCap className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-200/60 text-emerald-900">
-                    ๑๐๐ คะแนนเต็ม
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๒: พุทธประวัติและศาสนพิธี</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  ประวัติของพระบรมศาสดาตั้งแต่กำเนิดในชมพูทวีป การแสวงหาโมกขธรรม การประกาศพระศาสนา จนถึงปรินิพพาน และระเบียบพิธีสงฆ์
-                </p>
-                <div className="space-y-1.5 text-xs text-slate-700 pt-2 border-t border-emerald-200/60 font-medium">
-                  <div>• <strong>ปริเฉท ๑-๒:</strong> ศากยวงศ์, ประสูติ ณ ลุมพินีวัน, เสด็จออกบวชริมฝั่งแม่น้ำอโนมา, ตรัสรู้ใต้ต้นพระศรีมหาโพธิ์</div>
-                  <div>• <strong>ปริเฉท ๓:</strong> ปฐมเทศนา ธัมมจักกัปปวัตตนสูตร แก่ปัญจวัคคีย์ พระรัตนตรัยครบองค์ ๓</div>
-                  <div>• <strong>ปริเฉท ๔-๖:</strong> ส่งสาวก ๖๐ รูป, โปรดชฎิล ๓ พี่น้อง, พระอัครสาวก, ดับขันธปรินิพพาน ณ กุสินารา</div>
-                  <div>• <strong>ศาสนพิธี:</strong> วันสำคัญ ๔ วัน (มาฆะ, วิสาขะ, อาสาฬหะ, อัฏฐมี), พิธีทำบุญเลี้ยงพระ</div>
-                </div>
-              </div>
-
-              {/* Card 3: วินัยมุข */}
+              {/* Card 2: เบญจศีล เบญจธรรม / วินัยมุข */}
               <div className="p-6 rounded-2xl bg-sky-50/50 border border-sky-200 hover:border-sky-400 transition-all space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold">
@@ -218,15 +196,37 @@ export default function MediaPage() {
                     ๑๐๐ คะแนนเต็ม
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๓: วินัยมุข เล่ม ๑ (ศีล ๒๒๗)</h3>
+                <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๒: เบญจศีล เบญจธรรม & วินัยมุข</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  ข้อห้ามและข้ออนุญาตตามพระวินัยบัญญัติในพระปาติโมกข์ พร้อมกระบวนการไต่สวนและการออกจากอาบัติ
+                  หลักศีลธรรมภาคปฏิบัติของธรรมศึกษา (ศีล ๕ และธรรม ๕) พร้อมองค์วินิจฉัย และพระวินัยบัญญัติ ๒๒๗ สิกขาบทของนักธรรม
                 </p>
                 <div className="space-y-1.5 text-xs text-slate-700 pt-2 border-t border-sky-200/60 font-medium">
-                  <div>• <strong>ปาราชิก ๔:</strong> ขาดจากภิกษุทันที (เสพเมถุน, ขโมยของ ๕ มาสก, ฆ่ามนุษย์, อวดอุตตริมนุสสธรรม)</div>
-                  <div>• <strong>สังฆาทิเสส ๑๓:</strong> อาบัติหนักที่ต้องอยู่กรรม (ปริวาส-มานัต-อัพภาน โดยสงฆ์ ๒๐ รูป)</div>
-                  <div>• <strong>นิสสัคคิยปาจิตตีย์ ๓๐:</strong> การเก็บผ้า จีวร บาตรเกินกำหนด ต้องสละของก่อนปลงอาบัติ</div>
-                  <div>• <strong>เสขิยวัตร ๗๕:</strong> มารยาท ๔ หมวด (สารูป ๒๖, โภชน ๓๐, เทศนา ๑๖, ปกิณณกะ ๓) ล่วงละเมิดเป็นทุกกฏ</div>
+                  <div>• <strong>เบญจศีล ๕ (องค์วินิจฉัย):</strong> ปาณาติบาต (๕ องค์), อทินนาทาน (๕ องค์), กาเมสุมิจฉาจาร (๔ องค์/หญิง ๒๐ จำพวก), มุสาวาท (๔ องค์), สุราเมรัย (๔ องค์)</div>
+                  <div>• <strong>วิรัติ ๓:</strong> สัมปัตตวิรัติ (เว้นเฉพาะหน้า), สมาทานวิรัติ (เว้นด้วยรับศีล), สมุจเฉทวิรัติ (พระอริยะเว้นเด็ดขาด)</div>
+                  <div>• <strong>เบญจธรรม ๕:</strong> เมตตากรุณา (อานิสงส์ ๑๑ ประการ), สัมมาอาชีวะ (เว้นมิจฉาวณิชชา ๕), กามสังวร (สทารสันโดษ/ปติวัตร), สัจจะ ๔ ด้าน, สติสัมปชัญญะ</div>
+                  <div>• <strong>วินัยมุข (นักธรรม):</strong> ปาราชิก ๔, สังฆาทิเสส ๑๓ (วุฏฐานวิธี ปริวาส-มานัต-อัพภาน ๒๐ รูป), นิสสัคคิยปาจิตตีย์ ๓๐, เสขิยวัตร ๗๕, อธิกรณสมถะ ๗</div>
+                </div>
+              </div>
+
+              {/* Card 3: พุทธประวัติ */}
+              <div className="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 hover:border-emerald-400 transition-all space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">
+                    <GraduationCap className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-200/60 text-emerald-900">
+                    ๑๐๐ คะแนนเต็ม
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๓: พุทธประวัติ (๕ ยุคกาล ๑๓ ปริเฉท)</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  ประวัติของพระบรมศาสดาตามหลักสูตรปรับปรุง พ.ศ. ๒๕๕๗ แบ่งเป็น ๕ ยุคกาล และเหตุการณ์สำคัญ ๑๓ ปริเฉท
+                </p>
+                <div className="space-y-1.5 text-xs text-slate-700 pt-2 border-t border-emerald-200/60 font-medium">
+                  <div>• <strong>ปุริมกาล (๑-๕):</strong> ศากยวงศ์, ประสูติ ณ ลุมพินีวัน, ออกบวชริมแม่น้ำอโนมา, ตรัสรู้ใต้ต้นพระศรีมหาโพธิ์, ปฐมเทศนา ธัมมจักกัปปวัตตนสูตร แก่ปัญจวัคคีย์, พระเวฬุวันมหาวิหาร</div>
+                  <div>• <strong>ปฐมโพธิกาล (๖-๘):</strong> ส่งพระสาวก ๖๐ รูป, จาตุรงคสันนิบาต วันมาฆบูชา (พระอรหันต์ ๑,๒๕๐ รูป), เสด็จโปรดพุทธบิดา ณ กบิลพัสดุ์, พระอัครสาวก สารีบุตร-โมคคัลลานะ</div>
+                  <div>• <strong>มัชฌิม-ปัจฉิม-อปรการ (๙-๑๓):</strong> พุทธกิจ ๔๕ พรรษา, สังเวชนียสถาน ๔ ตำบล, ปรินิพพาน ณ สาลวโนทยาน กุสินารา, วันอัฏฐมีบูชา ถวายพระเพลิง ณ มกุฏพันธนเจดีย์</div>
+                  <div>• <strong>วันสำคัญสากล:</strong> วันวิสาขบูชา ได้รับการรับรองจากสมัชชาใหญ่แห่งสหประชาชาติ (UN) เป็นวันสำคัญสากลของโลก</div>
                 </div>
               </div>
 
@@ -242,46 +242,46 @@ export default function MediaPage() {
                 </div>
                 <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๔: เรียงความแก้กระทู้ธรรม</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  การเขียนบรรยายอธิบายขยายความพุทธศาสนสุภาษิตบทตั้ง เชื่อมโยงกับสุภาษิตบทที่ ๒ อย่างมีแบบแผนและถูกต้องตามระเบียบ
+                  การเขียนบรรยายอธิบายขยายความพุทธศาสนสุภาษิต ๕ หมวด เชื่อมโยงกับสุภาษิตบทที่ ๒ อย่างมีแบบแผนและถูกต้องตามระเบียบ
                 </p>
                 <div className="space-y-1.5 text-xs text-slate-700 pt-2 border-t border-rose-200/60 font-medium">
-                  <div>• <strong>ความยาวบังคับ:</strong> ต้องเขียนไม่น้อยกว่า ๒ หน้ากระดาษพิมพ์ขึ้นไป (เขียนไม่ถึงปรับตกทันที)</div>
-                  <div>• <strong>สุภาษิตเชื่อม:</strong> นักธรรมชั้นตรีกำหนดให้มีสุภาษิตเชื่อม ๑ บท ที่มีความหมายสอดคล้องกับบทตั้ง</div>
-                  <div>• <strong>โครงสร้าง ๔ ขั้น:</strong> คำนำ (นะโม+กระทู้ตั้ง) &rarr; เนื้อเรื่อง &rarr; สุภาษิตเชื่อม &rarr; บทสรุป</div>
-                  <div>• <strong>ระเบียบสนามหลวง:</strong> ห้ามสะกดผิด, ห้ามลบคำผิดเลอะเทอะ, ห้ามระบุชื่อวัดหรือชื่อตนเอง</div>
+                  <div>• <strong>๕ หมวดสุภาษิตหลักสูตรตรี:</strong> ทานวรรค (การให้), ปาปวรรค (ความชั่ว), ปุญญวรรค (บุญกุศล), สติวรรค (สติระลึกได้), สีลวรรค (ศีลความประพฤติ)</div>
+                  <div>• <strong>ความยาวบังคับ:</strong> เขียนไม่น้อยกว่า ๒ หน้ากระดาษพิมพ์ขึ้นไป (เขียนไม่ถึงปรับตกทันทีตามเกณฑ์สนามหลวง)</div>
+                  <div>• <strong>สุภาษิตเชื่อม:</strong> ต้องมีสุภาษิตเชื่อม ๑ บท ที่มีความหมายสอดคล้องกับบทตั้ง พร้อมระบุที่มา (เช่น ขุ. ธ. / ม. ม.)</div>
+                  <div>• <strong>โครงสร้าง ๔ ขั้น:</strong> คำนำ (นะโม+กระทู้ตั้ง) &rarr; เนื้อเรื่อง (อรรถาธิบาย) &rarr; สุภาษิตเชื่อม &rarr; บทสรุป และลงท้ายด้วยเครื่องหมาย ฯ</div>
                 </div>
               </div>
 
-              {/* Card 5: ศาสนพิธีและระเบียบสงฆ์ */}
+              {/* Card 5: ศาสนพิธี ๖ บท */}
               <div className="p-6 rounded-2xl bg-amber-50/50 border border-amber-300 hover:border-amber-500 transition-all space-y-3 md:col-span-2">
                 <div className="flex items-center justify-between">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white flex items-center justify-center font-bold">
                     <Sparkles className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-200/60 text-amber-900">
-                    วิชาประกอบสำคัญ (รวมในพุทธประวัติ)
+                    วิชาศาสนพิธี ๖ บท (ฉบับปรับปรุง ๒๕๕๗)
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-800">วิชาประกอบ: ศาสนพิธีและระเบียบปฏิบัติ</h3>
+                <h3 className="text-lg font-bold text-slate-800">วิชาที่ ๕: ศาสนพิธีและมารยาทชาวพุทธ</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  ระเบียบแบบแผนพิธีกรรมทางพระพุทธศาสนา ๔ หมวด สำหรับพระภิกษุสามเณรและพุทธศาสนิกชนที่ออกสอบทุกปี
+                  ระเบียบแบบแผนพิธีกรรมทางพระพุทธศาสนา ๔ หมวด และมารยาทชาวพุทธที่ถูกต้องตามแบบแผนของคณะสงฆ์ไทย
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs text-slate-700 pt-2 border-t border-amber-200/60 font-medium">
-                  <div className="p-2.5 bg-white rounded-xl border border-amber-200/80">
-                    <strong className="text-amber-900 block mb-0.5">๑. กุศลพิธี</strong>
-                    แสดงตนเป็นพุทธมามกะ, พิธีรักษาอุโบสถศีล ๘ ในวันพระ
+                  <div className="p-3 bg-white rounded-xl border border-amber-200/80 space-y-1">
+                    <strong className="text-amber-900 block text-xs">๑. เครื่องบูชา & โต๊ะหมู่</strong>
+                    <span className="text-slate-600 block text-[11px]">โต๊ะหมู่ ๔, ๕, ๗, ๙ (กระถางธูป ๑ เสมอ, พานพุ่ม, เชิงเทียน, แจกัน), เครื่องทองน้อย vs ธูปเทียนแพ</span>
                   </div>
-                  <div className="p-2.5 bg-white rounded-xl border border-amber-200/80">
-                    <strong className="text-amber-900 block mb-0.5">๒. บุญพิธี</strong>
-                    งานมงคล (พระคี่ เวียนขวา มีน้ำมนต์) vs งานอวมงคล (พระคู่ โยงศพ)
+                  <div className="p-3 bg-white rounded-xl border border-amber-200/80 space-y-1">
+                    <strong className="text-amber-900 block text-xs">๒. มารยาทชาวพุทธ</strong>
+                    <span className="text-slate-600 block text-[11px]">กราบเบญจางคประดิษฐ์ ชาย (ท่าเทพบุตร) หญิง (ท่าเทพธิดา) ๓ จังหวะ, ไหว้ ๓ ระดับ (พระ, ผู้มีคุณ, คนเสมอกัน)</span>
                   </div>
-                  <div className="p-2.5 bg-white rounded-xl border border-amber-200/80">
-                    <strong className="text-amber-900 block mb-0.5">๓. ทานพิธี</strong>
-                    ถวายสังฆทาน, กฐินทาน (กาลทาน ๑ เดือน มีพระ ๕ รูป), ผ้าป่า
+                  <div className="p-3 bg-white rounded-xl border border-amber-200/80 space-y-1">
+                    <strong className="text-amber-900 block text-xs">๓. บุญพิธี & ทานพิธี</strong>
+                    <span className="text-slate-600 block text-[11px]">งานมงคล (พระคี่ น้ำมนต์ สายสิญจน์) vs อวมงคล (พระคู่ โยงสายสิญจน์หน้าศพ), สังฆทาน (ทานสงฆ์ส่วนรวม), กฐินทาน</span>
                   </div>
-                  <div className="p-2.5 bg-white rounded-xl border border-amber-200/80">
-                    <strong className="text-amber-900 block mb-0.5">๔. ปกิณณกพิธี</strong>
-                    หัตถบาส (ไม่เกิน ๑ ศอก), อาราธนาศีล/ปริตร/ธรรม, ยะถา-สัพพี
+                  <div className="p-3 bg-white rounded-xl border border-amber-200/80 space-y-1">
+                    <strong className="text-amber-900 block text-xs">๔. กุศลพิธี & บทอาราธนา</strong>
+                    <span className="text-slate-600 block text-[11px]">แสดงตนเป็นพุทธมามกะ, อุโบสถศีล ๘, อาราธนาศีล ๕, อาราธนาพระปริตร, อาราธนาธรรม และหัตถบาส (ไม่เกิน ๑ ศอก)</span>
                   </div>
                 </div>
               </div>
@@ -292,33 +292,88 @@ export default function MediaPage() {
       )}
 
       {/* ========================================================================= */}
-      {/* SECTION 3: DOWNLOADS & EXTERNAL TEACHING AIDS */}
+      {/* SECTION 3: DOWNLOADS & OFFICIAL CURRICULUM TEXTBOOKS */}
       {/* ========================================================================= */}
       {activeTab === 'downloads' && (
         <section className="space-y-6">
           <div className="bg-white border border-amber-200/80 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
             <div className="border-b border-amber-100 pb-4">
               <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-100 text-amber-800">
-                คลังสื่อเอกสารและดาวน์โหลด
+                คลังเอกสารและหนังสือเรียนทางการ
               </span>
               <h2 className="text-2xl font-bold text-slate-800 mt-1">
-                เอกสารประกอบการสอน สไลด์บรรยาย และแบบฝึกหัดนักธรรมตรี
+                หนังสือเรียนหลักสูตรธรรมศึกษา ชั้นตรี (ฉบับปรับปรุง พุทธศักราช ๒๕๕๗)
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                รวบรวมแหล่งดาวน์โหลดคัมภีร์ทางการจากสำนักงานแม่กองธรรมสนามหลวง และสื่อประกอบการสอน
+                เอกสารทางการจากสำนักงานแม่กองธรรมสนามหลวง ร่วมกับ มหามกุฏราชวิทยาลัย ในพระบรมราชูปถัมภ์ สามารถดาวน์โหลดเป็นไฟล์ PDF ไปใช้งานได้ทันที
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Featured Official Textbook Card */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-yellow-500/10 border-2 border-amber-300 shadow-sm flex flex-col lg:flex-row items-center gap-6">
+              <div className="w-48 sm:w-56 shrink-0 rounded-2xl overflow-hidden shadow-lg border border-amber-300 bg-white">
+                <img
+                  src="/curriculum/tri/ปกธรรมศึกษา ชั้นตรี.jpg"
+                  alt="ปกหนังสือเรียน หลักสูตรธรรมศึกษา ชั้นตรี ฉบับปรับปรุง ๒๕๕๗"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+
+              <div className="space-y-3.5 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-amber-600 text-white shadow-2xs">
+                    ฉบับแม่กองธรรมสนามหลวง
+                  </span>
+                  <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                    พุทธศักราช ๒๕๕๗
+                  </span>
+                  <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    ความยาว ๒๖๘ หน้า (PDF เต็ม)
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-800">
+                  หลักสูตรธรรมศึกษา ชั้นตรี ฉบับปรับปรุง พุทธศักราช ๒๕๕๗
+                </h3>
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  หนังสือเรียนมาตรฐานทางการที่ใช้ในการเรียนการสอนและการสอบธรรมศึกษาชั้นตรีทั่วประเทศ จัดพิมพ์โดยมหามกุฏราชวิทยาลัย ครบถ้วนทั้ง ๕ หมวดวิชา:
+                  เรียงความแก้กระทู้ธรรม (๕ วรรค), วิชาธรรม (ธรรมวิภาค & คิหิปฏิบัติ), วิชาพุทธประวัติ (๕ กาล ๑๓ ปริเฉท), วิชาเบญจศีล เบญจธรรม (องค์วินิจฉัยและชาดกประกอบ), และวิชาศาสนพิธี (๖ บท) พร้อมผังความรู้และข้อสอบท้ายบท
+                </p>
+
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <a
+                    href="/curriculum/tri/1-267.pdf"
+                    download="หลักสูตรธรรมศึกษา_ชั้นตรี_๒๕๕๗_ฉบับสมบูรณ์.pdf"
+                    className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm font-bold transition-all shadow-md active:scale-95"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>ดาวน์โหลดหนังสือเรียนฉบับเต็ม (PDF 268 หน้า)</span>
+                  </a>
+
+                  <a
+                    href="/curriculum/tri/1-34.pdf"
+                    download="หลักสูตรธรรมศึกษา_ชั้นตรี_บันทึกMOU_สารบัญ.pdf"
+                    className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-white hover:bg-amber-50 border border-amber-300 text-amber-900 text-xs sm:text-sm font-bold transition-all shadow-2xs active:scale-95"
+                  >
+                    <FileText className="w-4 h-4 text-amber-600" />
+                    <span>ดาวน์โหลดบทนำ บันทึก MOU & สารบัญ (PDF 34 หน้า)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Reference Books Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
               
               <div className="bg-amber-50/40 border border-amber-200 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
                 <div>
                   <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center mb-3">
-                    <FileText className="w-5 h-5" />
+                    <BookOpen className="w-5 h-5" />
                   </div>
                   <h3 className="font-bold text-slate-800 text-base">หนังสือเรียน นวโกวาท (ฉบับสนามหลวง)</h3>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    หนังสือเรียนมาตรฐานพระราชนิพนธ์ในสมเด็จพระมหาสมณเจ้า กรมพระยาวชิรญาณวโรรส รวมหมวดธรรมและวินัยบัญญัติ
+                    หนังสือเรียนมาตรฐานพระราชนิพนธ์ในสมเด็จพระมหาสมณเจ้า กรมพระยาวชิรญาณวโรรส รวมหมวดธรรมและวินัยมุข เล่ม ๑ (ศีล ๒๒๗ สิกขาบท)
                   </p>
                 </div>
                 <a
@@ -337,20 +392,18 @@ export default function MediaPage() {
                   <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-700 flex items-center justify-center mb-3">
                     <Presentation className="w-5 h-5" />
                   </div>
-                  <h3 className="font-bold text-slate-800 text-base">สไลด์สรุปพุทธประวัติ ปริเฉท ๑-๖</h3>
+                  <h3 className="font-bold text-slate-800 text-base">สไลด์บรรยายในแอป (๙๙ สไลด์ ๑๓ หมวด)</h3>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    ชุดแผนภูมิภาพไทม์ไลน์เหตุการณ์สำคัญ พรรษาสำคัญ และวันสำคัญทางพระพุทธศาสนา
+                    ระบบสไลด์ฉายสอนในห้องเรียน พร้อมโหมดครูสอน โหมดเต็มจอ และแบบทดสอบท้ายบททุกหมวดวิชา
                   </p>
                 </div>
-                <a
-                  href="https://www.google.com/search?q=พุทธประวัติ+นักธรรมตรี+สไลด์+สรุป"
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  onClick={() => setActiveTab('slides')}
                   className="inline-flex items-center justify-center space-x-1.5 px-4 py-2 rounded-xl bg-white border border-emerald-200 text-emerald-800 hover:bg-emerald-100 text-xs font-bold transition-all shadow-2xs"
                 >
-                  <span>ค้นหาสไลด์บรรยายออนไลน์</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+                  <span>เปิดดูสไลด์บรรยายในระบบ</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
               </div>
 
               <div className="bg-rose-50/40 border border-rose-200 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
@@ -360,7 +413,7 @@ export default function MediaPage() {
                   </div>
                   <h3 className="font-bold text-slate-800 text-base">คู่มือและตัวอย่างเขียนกระทู้ธรรม ๑๐๐ เต็ม</h3>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    ตัวอย่างบทความกระทู้ธรรมสนามหลวงที่ได้รับคะแนนเต็ม ๑๐๐ พร้อมคำอธิบายจุดเชื่อมสุภาษิต
+                    ตัวอย่างบทความกระทู้ธรรมสนามหลวงที่ได้รับคะแนนเต็ม ๑๐๐ พร้อมคำอธิบายจุดเชื่อมสุภาษิต และแบบฟอร์มร่าง
                   </p>
                 </div>
                 <Link
