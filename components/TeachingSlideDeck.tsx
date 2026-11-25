@@ -8,6 +8,7 @@ import {
   SlideContent 
 } from '@/lib/teachingSlidesData';
 import { DhammaIllustration } from '@/components/DhammaIllustrations';
+import { SubjectIntroductionCard } from '@/components/SubjectIntroductionCard';
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -54,6 +55,7 @@ export const TeachingSlideDeck: React.FC = () => {
   const [completedSlides, setCompletedSlides] = useState<Record<string, boolean>>({});
   const [revealedNotes, setRevealedNotes] = useState<Record<number, boolean>>({});
   const [deckSubjectFilter, setDeckSubjectFilter] = useState<string>('all');
+  const [showIntroModal, setShowIntroModal] = useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -330,48 +332,83 @@ export const TeachingSlideDeck: React.FC = () => {
           ))}
         </div>
 
-        {/* Deck selection pills */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-          {NAKDHAMMA_TRI_DECKS
-            .filter((d) => deckSubjectFilter === 'all' || d.subjectId === deckSubjectFilter)
-            .map((deck) => {
-              const isSelected = deck.id === selectedDeckId;
-            return (
-              <button
-                key={deck.id}
-                onClick={() => handleDeckChange(deck.id)}
-                className={`text-left p-4 rounded-2xl border transition-all flex flex-col justify-between ${
-                  isSelected
-                    ? 'bg-gradient-to-br from-amber-50 to-orange-50/50 border-amber-400 shadow-sm ring-2 ring-amber-400/30'
-                    : 'bg-slate-50/60 border-slate-200/80 hover:bg-white hover:border-amber-200 text-slate-700'
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800">
-                      {deck.subjectName}
-                    </span>
-                    <span className="text-[10px] text-slate-400 flex items-center gap-1">
-                      <Clock className="w-3 h-3" /> {deck.estimatedMinutes} นาที
+        {/* Subject Introduction Card (บทนำประจำวิชาและโครงสร้างหลักสูตร) */}
+        <SubjectIntroductionCard
+          subjectId={deckSubjectFilter as any}
+          onSelectDeck={handleDeckChange}
+        />
+
+        {/* Decks organized by Major Categories / Subjects */}
+        <div className="space-y-6 pt-2">
+          {[
+            { id: 'dhamma', name: 'หมวดวิชาธรรม (ธรรมวิภาค & คิหิปฏิบัติ & อุดมศึกษา)', icon: '📜', badge: '๕ ชุดสไลด์ · ๓๘ สไลด์' },
+            { id: 'buddha', name: 'หมวดวิชาพุทธประวัติ (๕ กาล ๑๓ ปริเฉท)', icon: '🪷', badge: '๔ ชุดสไลด์ · ๒๙ สไลด์' },
+            { id: 'ceremony', name: 'หมวดวิชาศาสนพิธี (ระเบียบพิธี & วันสำคัญ)', icon: '🏛️', badge: '๒ ชุดสไลด์ · ๑๔ สไลด์' },
+            { id: 'vinai', name: 'หมวดวิชาวินัยบัญญัติ (เบญจศีลเบญจธรรม & วินัยมุข)', icon: '⚖️', badge: '๔ ชุดสไลด์ · ๒๖ สไลด์' },
+            { id: 'kratu', name: 'หมวดวิชากระทู้ธรรม (พุทธศาสนสุภาษิต & เรียงความ)', icon: '✍️', badge: '๑ ชุดสไลด์ · ๑๐ สไลด์' }
+          ]
+            .filter((group) => deckSubjectFilter === 'all' || deckSubjectFilter === group.id)
+            .map((group) => {
+              const groupDecks = NAKDHAMMA_TRI_DECKS.filter((d) => d.subjectId === group.id);
+              if (groupDecks.length === 0) return null;
+
+              return (
+                <div key={group.id} className="space-y-3 bg-slate-50/60 p-4 sm:p-5 rounded-3xl border border-slate-200">
+                  <div className="flex items-center justify-between pb-2.5 border-b border-slate-200/80">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xl">{group.icon}</span>
+                      <h3 className="font-extrabold text-sm sm:text-base text-slate-800">
+                        {group.name}
+                      </h3>
+                    </div>
+                    <span className="text-xs font-bold text-amber-800 bg-amber-100 px-3 py-0.5 rounded-full border border-amber-200">
+                      {group.badge}
                     </span>
                   </div>
-                  <h3 className="text-sm font-bold text-slate-800 line-clamp-1 mb-1">
-                    {deck.title}
-                  </h3>
-                  <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
-                    {deck.description}
-                  </p>
-                </div>
 
-                <div className="pt-3 mt-2 border-t border-amber-100/60 flex items-center justify-between text-[11px] font-semibold text-slate-500">
-                  <span>{deck.slidesCount} สไลด์</span>
-                  <span className={`text-xs ${isSelected ? 'text-amber-600 font-bold' : 'text-slate-400'}`}>
-                    {isSelected ? 'กำลังสอน ▶' : 'เลือกบทนี้'}
-                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                    {groupDecks.map((deck) => {
+                      const isSelected = deck.id === selectedDeckId;
+                      return (
+                        <button
+                          key={deck.id}
+                          onClick={() => handleDeckChange(deck.id)}
+                          className={`text-left p-4 rounded-2xl border transition-all flex flex-col justify-between ${
+                            isSelected
+                              ? 'bg-gradient-to-br from-amber-50 to-orange-50/50 border-amber-400 shadow-sm ring-2 ring-amber-400/30'
+                              : 'bg-white border-slate-200/80 hover:border-amber-300 text-slate-700 shadow-2xs hover:shadow-xs'
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center justify-between mb-1.5">
+                              <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800">
+                                {deck.subjectName}
+                              </span>
+                              <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                                <Clock className="w-3 h-3" /> {deck.estimatedMinutes} นาที
+                              </span>
+                            </div>
+                            <h3 className="text-sm font-bold text-slate-800 line-clamp-1 mb-1">
+                              {deck.title}
+                            </h3>
+                            <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
+                              {deck.description}
+                            </p>
+                          </div>
+
+                          <div className="pt-3 mt-2 border-t border-amber-100/60 flex items-center justify-between text-[11px] font-semibold text-slate-500">
+                            <span>{deck.slidesCount} สไลด์</span>
+                            <span className={`text-xs ${isSelected ? 'text-amber-600 font-bold' : 'text-slate-400'}`}>
+                              {isSelected ? 'กำลังสอน ▶' : 'เลือกบทนี้'}
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </button>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
 
@@ -449,6 +486,16 @@ export const TeachingSlideDeck: React.FC = () => {
               >
                 <Lightbulb className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">บันทึกช่วยสอน</span>
+              </button>
+
+              {/* Subject Introduction Button */}
+              <button
+                onClick={() => setShowIntroModal(true)}
+                className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 font-bold transition-all text-xs"
+                title="เปิดอ่านบทนำและโครงสร้างหลักสูตรของวิชานี้"
+              >
+                <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+                <span className="hidden md:inline">บทนำวิชา</span>
               </button>
 
               {/* Fullscreen toggle */}
@@ -580,11 +627,17 @@ export const TeachingSlideDeck: React.FC = () => {
             )}
 
             {/* Custom Illustrated Diagram for Nak Dhamma Tri */}
-            {currentSlide.illustrationId && (
-              <div className="pt-2">
-                <DhammaIllustration id={currentSlide.illustrationId as any} />
-              </div>
-            )}
+            <div className="pt-2">
+              <DhammaIllustration
+                id={currentSlide.illustrationId}
+                title={currentSlide.title}
+                categoryTag={currentSlide.categoryTag}
+                keyConcept={currentSlide.keyConcept}
+                diagramItems={currentSlide.diagramItems}
+                paliTerms={currentSlide.paliTerms}
+                bulletPoints={currentSlide.bulletPoints}
+              />
+            </div>
 
             {/* Key Concept Callout */}
             <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-4 sm:p-5 text-white shadow-md shadow-amber-500/10 flex items-start space-x-3.5">
@@ -929,6 +982,37 @@ export const TeachingSlideDeck: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Subject Introduction Modal */}
+      {showIntroModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 animate-fadeIn">
+          <div className="bg-white max-w-4xl w-full rounded-3xl max-h-[90vh] overflow-y-auto shadow-2xl space-y-4 p-5 sm:p-6 border border-amber-300">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center space-x-2">
+                <BookOpen className="w-5 h-5 text-amber-600" />
+                <h3 className="font-bold text-slate-800 text-base sm:text-lg">
+                  บทนำและโครงสร้างหลักสูตร: {currentDeck.subjectName}
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowIntroModal(false)}
+                className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs"
+              >
+                ปิดหน้าต่าง ✕
+              </button>
+            </div>
+
+            <SubjectIntroductionCard
+              subjectId={currentDeck.subjectId}
+              defaultExpanded={true}
+              onSelectDeck={(deckId) => {
+                handleDeckChange(deckId);
+                setShowIntroModal(false);
+              }}
+            />
           </div>
         </div>
       )}

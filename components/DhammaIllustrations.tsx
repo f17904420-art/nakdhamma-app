@@ -88,14 +88,25 @@ export type IllustrationId =
   | 'sixty-monks-mission'
   | 'chants-paritta'
   | 'dāna-words'
-  | 'kratu-sample-format';
+  | 'kratu-sample-format'
+  | 'table-altar-set'
+  | 'four-buddha-places'
+  | 'buddha-parinibbana'
+  | 'buddha-cremation-stupa'
+  | 'vinaya-rules';
 
-interface IllustrationProps {
-  id: IllustrationId;
+export interface IllustrationProps {
+  id?: IllustrationId | string;
   title?: string;
+  categoryTag?: string;
+  keyConcept?: string;
+  paliTerms?: { pali: string; translation: string; meaning: string }[];
+  diagramItems?: { label: string; desc: string; color: string }[];
+  bulletPoints?: string[];
 }
 
-export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
+export const DhammaIllustration: React.FC<IllustrationProps> = (props) => {
+  const { id, title, categoryTag, keyConcept, paliTerms, diagramItems, bulletPoints } = props;
   switch (id) {
 
     // -------------------------------------------------------------
@@ -438,6 +449,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 8. อิทธิบาท ๔ (บันไดสู่ความสำเร็จ)
     // -------------------------------------------------------------
+    case 'four-idhipada':
     case 'iddhipada-four':
       return (
         <div className="bg-gradient-to-br from-pink-50 to-orange-50 border border-pink-200 rounded-2xl p-5 shadow-xs space-y-3">
@@ -483,6 +495,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 9. พรหมวิหาร ๔ & ฆราวาสธรรม ๔
     // -------------------------------------------------------------
+    case 'brahmavihara-4':
     case 'brahmavihara-four':
       return (
         <div className="bg-white border border-amber-200 rounded-2xl p-5 shadow-xs space-y-3">
@@ -554,6 +567,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 11. มิตรแท้ vs มิตรเทียม
     // -------------------------------------------------------------
+    case 'five-friends':
     case 'friends-compare':
       return (
         <div className="bg-white border border-amber-200/90 rounded-2xl p-5 shadow-xs space-y-3">
@@ -597,6 +611,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 12. ทิศ ๖
     // -------------------------------------------------------------
+    case 'six-directions':
     case 'direction-six':
       return (
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/90 rounded-2xl p-5 shadow-xs">
@@ -733,6 +748,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 15. ตรัสรู้ ณ โพธิบัลลังก์
     // -------------------------------------------------------------
+    case 'buddha-enlightenment':
     case 'enlightenment-bodhi':
       return (
         <div className="bg-gradient-to-br from-emerald-950 via-teal-950 to-slate-900 text-white rounded-2xl p-6 shadow-md relative overflow-hidden">
@@ -788,6 +804,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 16. ปฐมเทศนา
     // -------------------------------------------------------------
+    case 'dhammacakkappavattana':
     case 'dhammacakka-first-sermon':
       return (
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/90 rounded-2xl p-5 shadow-xs space-y-3">
@@ -879,6 +896,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 18. อาบัติ ๗ กอง
     // -------------------------------------------------------------
+    case 'seven-apatti':
     case 'vinaya-seven-apatti':
       return (
         <div className="bg-white border border-sky-200 rounded-2xl p-5 shadow-xs space-y-3">
@@ -1012,6 +1030,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 22. สรุปศีล ๒๒๗ สิกขาบท
     // -------------------------------------------------------------
+    case 'patimokkha-227':
     case 'vinaya-patimokkha-all':
       return (
         <div className="bg-white border border-amber-200/90 rounded-2xl p-5 shadow-xs space-y-3">
@@ -1065,6 +1084,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 23. โครงสร้าง ๔ ขั้นตอนกระทู้
     // -------------------------------------------------------------
+    case 'kratu-structure':
     case 'kratu-four-steps':
       return (
         <div className="bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-200/90 rounded-2xl p-5 shadow-xs space-y-3">
@@ -1371,6 +1391,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 30. เบญจขันธ์ ๕ (รูปและนาม)
     // -------------------------------------------------------------
+    case 'five-aggregates':
     case 'khandha-five':
       return (
         <div className="bg-white border border-indigo-200 rounded-2xl p-5 shadow-xs space-y-4">
@@ -1424,6 +1445,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 31. เบญจศีล ๕ คู่กับ เบญจธรรม ๕ (ข้อห้าม vs ข้อปฏิบัติ)
     // -------------------------------------------------------------
+    case 'five-precepts':
     case 'sila-dhamma-five':
       return (
         <div className="bg-white border border-emerald-200 rounded-2xl p-5 shadow-xs space-y-3">
@@ -2035,6 +2057,7 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
     // -------------------------------------------------------------
     // 45. สัปปุริสธรรม ๗ (ธรรมของสัตบุรุษ)
     // -------------------------------------------------------------
+    case 'seven-ariyadhamma':
     case 'sappurisa-seven':
       return (
         <div className="bg-white border border-indigo-200 rounded-2xl p-5 shadow-xs space-y-3">
@@ -2219,7 +2242,284 @@ export const DhammaIllustration: React.FC<IllustrationProps> = ({ id }) => {
         </div>
       );
 
+    // -------------------------------------------------------------
+    // 51. การจัดโต๊ะหมู่บูชาและเครื่องสักการะ (table-altar-set)
+    // -------------------------------------------------------------
+    case 'table-altar-set':
+      return (
+        <div className="bg-gradient-to-br from-amber-50 to-orange-50/60 border border-amber-300 rounded-2xl p-5 shadow-xs space-y-3.5">
+          <div className="flex items-center justify-between border-b border-amber-200/80 pb-2">
+            <span className="text-xs font-bold text-amber-950 flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-amber-600" />
+              <span>ผังมาตรฐานการจัดโต๊ะหมู่บูชาและลำดับการจุดธูปเทียนบูชาพระ</span>
+            </span>
+            <span className="text-[10px] bg-amber-500 text-white px-2.5 py-0.5 rounded-full font-bold">ศาสนพิธี</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+            <div className="p-3.5 bg-white rounded-xl border border-amber-200 text-center space-y-2 shadow-2xs">
+              <div className="w-10 h-10 mx-auto rounded-full bg-amber-100 flex items-center justify-center text-amber-700 text-lg font-bold">
+                🪷
+              </div>
+              <span className="font-bold text-amber-900 block text-xs">ชั้นสูงสุด: พระพุทธรูป</span>
+              <p className="text-[11px] text-slate-600 leading-relaxed">
+                ประดิษฐาน ณ โต๊ะตัวบนสุดตรงกลาง หันพระพักตร์ไปทางทิศตะวันออกหรือทิศเหนือ
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-xl border border-amber-200 text-center space-y-2 shadow-2xs">
+              <div className="w-10 h-10 mx-auto rounded-full bg-amber-100 flex items-center justify-center text-amber-700 text-lg font-bold">
+                🕯️
+              </div>
+              <span className="font-bold text-amber-900 block text-xs">แจกันดอกไม้ ๒ ข้าง & เชิงเทียน ๒ เล่ม</span>
+              <p className="text-[11px] text-slate-600 leading-relaxed">
+                ดอกไม้บูชาพระสงฆ์ · เทียนเล่มขวาบูชาพระธรรม · เทียนเล่มซ้ายบูชาพระวินัย
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-xl border border-amber-200 text-center space-y-2 shadow-2xs">
+              <div className="w-10 h-10 mx-auto rounded-full bg-amber-100 flex items-center justify-center text-amber-700 text-lg font-bold">
+                💨
+              </div>
+              <span className="font-bold text-amber-900 block text-xs">แถวหน้า: กระถางธูป ๓ ดอก</span>
+              <p className="text-[11px] text-slate-600 leading-relaxed">
+                บูชาพระพุทธคุณ ๓ ประการ: พระบริสุทธิคุณ, พระปัญญาคุณ, พระมหากรุณาธิคุณ
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-amber-100/70 rounded-xl p-2.5 text-[11px] text-amber-900 font-semibold flex items-center justify-between flex-wrap gap-2">
+            <span>✨ <strong>ลำดับการจุด:</strong> จุดเทียนขวาของพระพุทธรูปก่อน ➔ จุดเทียนซ้าย ➔ จุดธูป ๓ ดอก ➔ กราบเบญจางคประดิษฐ์ ๓ ครั้ง</span>
+          </div>
+        </div>
+      );
+
+    // -------------------------------------------------------------
+    // 52. สังเวชนียสถาน ๔ ตำบล (four-buddha-places)
+    // -------------------------------------------------------------
+    case 'four-buddha-places':
+      return (
+        <div className="bg-white border border-sky-300 rounded-2xl p-5 shadow-xs space-y-3.5">
+          <div className="flex items-center justify-between border-b border-sky-100 pb-2">
+            <span className="text-xs font-bold text-sky-950 flex items-center gap-1.5">
+              <Compass className="w-4 h-4 text-sky-600" />
+              <span>ผัง ๔ สังเวชนียสถาน: สถานที่อันเป็นที่ตั้งแห่งความเลื่อมใสของพุทธบริษัท</span>
+            </span>
+            <span className="text-[10px] bg-sky-600 text-white px-2 py-0.5 rounded-md font-bold">พุทธประวัติ</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+            <div className="p-3 bg-sky-50 rounded-xl border border-sky-200 space-y-1">
+              <span className="font-bold text-sky-900 block">๑. สถานที่ประสูติ</span>
+              <p className="text-[11px] font-semibold text-slate-700">ลุมพินีวัน (เนปาล)</p>
+              <p className="text-[10px] text-slate-500">วันเพ็ญเดือน ๖ ใต้ต้นรัง สาลวโนทยาน</p>
+            </div>
+            <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 space-y-1">
+              <span className="font-bold text-amber-900 block">๒. สถานที่ตรัสรู้</span>
+              <p className="text-[11px] font-semibold text-slate-700">พุทธคยา (อินเดีย)</p>
+              <p className="text-[10px] text-slate-500">ควงไม้ศรีมหาโพธิ์ ริมฝั่งแม่น้ำเนรัญชรา</p>
+            </div>
+            <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 space-y-1">
+              <span className="font-bold text-emerald-900 block">๓. สถานที่ปฐมเทศนา</span>
+              <p className="text-[11px] font-semibold text-slate-700">สารนาถ (พาราณสี)</p>
+              <p className="text-[10px] text-slate-500">ป่าอิสิปตนมฤคทายวัน โปรดปัญจวัคคีย์</p>
+            </div>
+            <div className="p-3 bg-rose-50 rounded-xl border border-rose-200 space-y-1">
+              <span className="font-bold text-rose-900 block">๔. สถานที่ปรินิพพาน</span>
+              <p className="text-[11px] font-semibold text-slate-700">กุสินารา (อินเดีย)</p>
+              <p className="text-[10px] text-slate-500">สาลวโนทยานแห่งมัลลกษัตริย์ ระหว่างต้นสาละคู่</p>
+            </div>
+          </div>
+        </div>
+      );
+
+    // -------------------------------------------------------------
+    // 53. มหาปรินิพพาน (buddha-parinibbana)
+    // -------------------------------------------------------------
+    case 'buddha-parinibbana':
+      return (
+        <div className="bg-gradient-to-br from-purple-50 to-rose-50/70 border border-purple-200 rounded-2xl p-5 shadow-xs space-y-3">
+          <div className="flex items-center justify-between border-b border-purple-200/80 pb-2">
+            <span className="text-xs font-bold text-purple-950 flex items-center gap-1.5">
+              <Moon className="w-4 h-4 text-purple-600" />
+              <span>เหตุการณ์มหาปรินิพพาน ณ สาลวโนทยาน เมืองกุสินารา</span>
+            </span>
+            <span className="text-[10px] bg-purple-600 text-white px-2 py-0.5 rounded-md font-bold">ปัจฉิมกาล</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div className="p-3 bg-white rounded-xl border border-purple-200 space-y-1">
+              <span className="font-bold text-purple-900 block">พระสุภัททะ ปัจฉิมสาวก</span>
+              <p className="text-[11px] text-slate-600">
+                ปริพาชกทูลถามความจริง ทรงแสดงอริยมรรคมีองค์ ๘ จนบรรลุพระอรหันต์เป็นองค์สุดท้าย
+              </p>
+            </div>
+            <div className="p-3 bg-white rounded-xl border border-purple-200 space-y-1">
+              <span className="font-bold text-purple-900 block">พระปัจฉิมโอวาท</span>
+              <p className="text-[11px] text-slate-600 font-serif italic">
+                "วยธมฺมา สงฺขารา อปฺปมาเทน สมฺปาเทถ" (สังขารเสื่อมเป็นธรรมดา จงยังความไม่ประมาทให้ถึงพร้อม)
+              </p>
+            </div>
+            <div className="p-3 bg-white rounded-xl border border-purple-200 space-y-1">
+              <span className="font-bold text-purple-900 block">ศาสดาแทนพระองค์</span>
+              <p className="text-[11px] text-slate-600">
+                พระธรรมและพระวินัยที่ทรงแสดงไว้ดีแล้ว จักเป็นศาสดาแทนพระองค์เมื่อล่วงลับไป
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+
+    // -------------------------------------------------------------
+    // 54. ถวายพระเพลิง & แจกพระธาตุ (buddha-cremation-stupa)
+    // -------------------------------------------------------------
+    case 'buddha-cremation-stupa':
+      return (
+        <div className="bg-white border border-amber-300 rounded-2xl p-5 shadow-xs space-y-3">
+          <div className="flex items-center justify-between border-b border-amber-200 pb-2">
+            <span className="text-xs font-bold text-amber-950 flex items-center gap-1.5">
+              <Flame className="w-4 h-4 text-orange-500" />
+              <span>การถวายพระเพลิง ณ มกุฏพันธนเจดีย์ & โทณพราหมณ์แบ่งพระบรมสารีริกธาตุ</span>
+            </span>
+            <span className="text-[10px] bg-amber-600 text-white px-2 py-0.5 rounded-md font-bold">อปรการ</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-200 space-y-1">
+              <span className="font-bold text-amber-900 block">🔥 มกุฏพันธนเจดีย์แห่งมัลลกษัตริย์</span>
+              <p className="text-[11px] text-slate-600 leading-relaxed">
+                ไฟไม่ติดจนกระทั่งพระมหากัสสปะพร้อมด้วยพระสงฆ์ ๕๐๐ รูปเดินทางมาถึงและกราบถวายบังคมพระยุคลบาท เพลิงทิพย์จึงลุกโชนขึ้นเอง
+              </p>
+            </div>
+            <div className="p-3.5 bg-orange-50 rounded-xl border border-orange-200 space-y-1">
+              <span className="font-bold text-orange-900 block">⚖️ โทณพราหมณ์ตวงแบ่งพระบรมสารีริกธาตุ</span>
+              <p className="text-[11px] text-slate-600 leading-relaxed">
+                ใช้ทะนานทองตวงพระบรมสารีริกธาตุแบ่งออกเป็น ๘ ส่วนเท่ากันแก่กษัตริย์ ๘ แว่นแคว้น เพื่อนำไปสร้างพระสถูปเจดีย์บูชา
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+
+    // -------------------------------------------------------------
+    // 55. ลำดับความหนักเบาพระวินัย (vinaya-rules)
+    // -------------------------------------------------------------
+    case 'vinaya-rules':
+      return (
+        <div className="bg-white border border-emerald-300 rounded-2xl p-5 shadow-xs space-y-3">
+          <div className="flex items-center justify-between border-b border-emerald-100 pb-2">
+            <span className="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
+              <Scale className="w-4 h-4 text-emerald-600" />
+              <span>ลำดับชั้นความหนักเบาแห่งสิกขาบทพระวินัย (พระปาติโมกข์ ๒๒๗ ข้อ)</span>
+            </span>
+            <span className="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-md font-bold">วินัยมุข</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+            <div className="p-3 bg-rose-50 rounded-xl border border-rose-200 space-y-1">
+              <span className="font-bold text-rose-900 block">ปาราชิก ๔ ข้อ</span>
+              <p className="text-[11px] text-rose-700 font-semibold">ขาดจากความเป็นพระทันที</p>
+              <p className="text-[10px] text-slate-500">เสพเมถุน, ลัก ๕ มาสก, ฆ่ามนุษย์, อวดอุตตริมนุสสธรรม</p>
+            </div>
+            <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 space-y-1">
+              <span className="font-bold text-amber-900 block">สังฆาทิเสส ๑๓ ข้อ</span>
+              <p className="text-[11px] text-amber-700 font-semibold">อาบัติหนัก ต้องอยู่กรรม</p>
+              <p className="text-[10px] text-slate-500">ต้องอาศัยสงฆ์ ๒๐ รูปสวดอัพภานเรียกเข้าหมู่</p>
+            </div>
+            <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 space-y-1">
+              <span className="font-bold text-emerald-900 block">นิสสัคคิยปาจิตตีย์ ๓๐</span>
+              <p className="text-[11px] text-emerald-700 font-semibold">ต้องสละของก่อนปลงอาบัติ</p>
+              <p className="text-[10px] text-slate-500">จีวรวรรค ๑๐, โกสิยวรรค ๑๐, ปัตตวรรค ๑๐</p>
+            </div>
+            <div className="p-3 bg-sky-50 rounded-xl border border-sky-200 space-y-1">
+              <span className="font-bold text-sky-900 block">ปาจิตตีย์ ๙๒ & เสขิยวัตร ๗๕</span>
+              <p className="text-[11px] text-sky-700 font-semibold">อาบัติเบา & มารยาทอันดีงาม</p>
+              <p className="text-[10px] text-slate-500">สารูป ๒๖, โภชนะ ๓๐, เทศนา ๑๖, ปกิณณกะ ๓</p>
+            </div>
+          </div>
+        </div>
+      );
+
     default:
-      return null;
+      // Smart Dynamic Buddhist Diagram for any slide without bespoke illustration
+      return (
+        <div className="bg-gradient-to-br from-amber-50/80 via-white to-orange-50/50 border-2 border-amber-200/90 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3.5">
+          <div className="flex items-center justify-between border-b border-amber-100 pb-2">
+            <span className="text-xs font-bold text-amber-900 flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-amber-600" />
+              <span>แผนภาพประกอบการสอน: {title || 'สรุปมโนทัศน์ประจำสไลด์'}</span>
+            </span>
+            {categoryTag && (
+              <span className="text-[10px] bg-amber-200/80 text-amber-900 px-2.5 py-0.5 rounded-full font-bold">
+                {categoryTag}
+              </span>
+            )}
+          </div>
+
+          {diagramItems && diagramItems.length > 0 && (
+            <div className={`grid grid-cols-1 ${
+              diagramItems.length === 2 ? 'sm:grid-cols-2' :
+              diagramItems.length === 3 ? 'sm:grid-cols-3' :
+              diagramItems.length === 4 ? 'sm:grid-cols-2 lg:grid-cols-4' :
+              'sm:grid-cols-2 md:grid-cols-3'
+            } gap-2.5`}>
+              {diagramItems.map((item, idx) => {
+                const isEmerald = item.color === 'emerald';
+                const isSky = item.color === 'sky';
+                const isPurple = item.color === 'purple';
+                const isRose = item.color === 'rose';
+
+                const bgClass = isEmerald ? 'bg-emerald-50 border-emerald-200 text-emerald-900' :
+                  isSky ? 'bg-sky-50 border-sky-200 text-sky-900' :
+                  isPurple ? 'bg-purple-50 border-purple-200 text-purple-900' :
+                  isRose ? 'bg-rose-50 border-rose-200 text-rose-900' :
+                  'bg-amber-50 border-amber-200 text-amber-900';
+
+                const badgeClass = isEmerald ? 'bg-emerald-200 text-emerald-900' :
+                  isSky ? 'bg-sky-200 text-sky-900' :
+                  isPurple ? 'bg-purple-200 text-purple-900' :
+                  isRose ? 'bg-rose-200 text-rose-900' :
+                  'bg-amber-200 text-amber-900';
+
+                return (
+                  <div key={idx} className={`p-3 rounded-xl border ${bgClass} space-y-1 shadow-2xs`}>
+                    <div className="flex items-center justify-between">
+                      <span className={`w-5 h-5 rounded-full ${badgeClass} flex items-center justify-center text-[10px] font-extrabold`}>
+                        {idx + 1}
+                      </span>
+                      <span className="text-xs font-bold">{item.label}</span>
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed pt-0.5">{item.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {paliTerms && paliTerms.length > 0 && (
+            <div className="pt-0.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                {paliTerms.slice(0, 3).map((term, idx) => (
+                  <div key={idx} className="bg-white/90 border border-amber-200/60 p-2.5 rounded-lg text-xs space-y-0.5">
+                    <div className="font-bold text-amber-900 text-xs">{term.pali}</div>
+                    <div className="text-slate-600 font-semibold text-[11px]">{term.translation}</div>
+                    <div className="text-slate-400 text-[10px]">{term.meaning}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {keyConcept && (
+            <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-yellow-500/10 border border-amber-300/80 rounded-xl p-2.5 flex items-start gap-2">
+              <Lightbulb className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+              <div className="text-xs text-amber-950 leading-relaxed font-semibold">
+                <span className="font-extrabold text-amber-900">หัวใจสำคัญ: </span>
+                {keyConcept}
+              </div>
+            </div>
+          )}
+        </div>
+      );
   }
 };

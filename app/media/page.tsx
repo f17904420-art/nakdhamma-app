@@ -24,9 +24,10 @@ import {
 import { TeachingSlideDeck } from '@/components/TeachingSlideDeck';
 import { DhammaFlashcards } from '@/components/DhammaFlashcards';
 import { DhammaInfographicsGallery } from '@/components/DhammaInfographicsGallery';
+import { SubjectIntroductionCard } from '@/components/SubjectIntroductionCard';
 
 export default function MediaPage() {
-  const [activeTab, setActiveTab] = useState<'slides' | 'flashcards' | 'infographics' | 'cheatsheets' | 'downloads'>('slides');
+  const [activeTab, setActiveTab] = useState<'slides' | 'introductions' | 'flashcards' | 'infographics' | 'cheatsheets' | 'downloads'>('slides');
 
   return (
     <div className="space-y-6 sm:space-y-10 pb-16">
@@ -64,6 +65,18 @@ export default function MediaPage() {
             >
               <Presentation className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
               <span>สไลด์ช่วยสอน (๑๖ หมวด ๑๑๙ สไลด์)</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('introductions')}
+              className={`shrink-0 whitespace-nowrap flex items-center space-x-1.5 sm:space-x-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md active:scale-95 ${
+                activeTab === 'introductions'
+                  ? 'bg-white text-amber-900 shadow-black/10'
+                  : 'bg-white/20 text-white hover:bg-white/30'
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
+              <span>บทนำ ๕ หมวดวิชา & โครงสร้าง</span>
             </button>
 
             <button
@@ -123,6 +136,42 @@ export default function MediaPage() {
       {activeTab === 'slides' && (
         <section className="space-y-4">
           <TeachingSlideDeck />
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* SECTION 1.5: SUBJECT INTRODUCTIONS & SYLLABUS BLUEPRINT */}
+      {/* ========================================================================= */}
+      {activeTab === 'introductions' && (
+        <section className="space-y-6 animate-fadeIn">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-amber-200/80">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800">
+                บทนำและโครงสร้างหลักสูตร ๕ หมวดวิชาทางการ
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500">
+                อิงตามหลักสูตรแม่กองธรรมสนามหลวง ธรรมศึกษาและนักธรรมชั้นตรี
+              </p>
+            </div>
+            <button
+              onClick={() => setActiveTab('slides')}
+              className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 shadow-xs transition-all self-start sm:self-auto"
+            >
+              <Presentation className="w-4 h-4" />
+              <span>ไปยังสไลด์ช่วยสอน</span>
+            </button>
+          </div>
+
+          <div className="space-y-6">
+            {(['dhamma', 'buddha', 'ceremony', 'vinai', 'kratu'] as const).map((subId) => (
+              <SubjectIntroductionCard
+                key={subId}
+                subjectId={subId}
+                defaultExpanded={subId === 'dhamma'}
+                onSelectDeck={() => setActiveTab('slides')}
+              />
+            ))}
+          </div>
         </section>
       )}
 
